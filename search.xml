@@ -67,7 +67,7 @@
 <p>Polkadot 看重的主要原理和规则有：</p>
 <p><strong>最小</strong>：Polkadot 需要有尽可能少的功能性。<br><strong>简单</strong>：只要他们可以推给中间件、放在平行链、或用下面要讲的一种优化手段，就不在基础协议里添加多余的复杂性。<br><strong>通用</strong>：没必要在平行链中添加任何要求、约束或限制；Polkadot 需要成为共识系统开发的基石，要尽量通过给模型加入最具适应度的扩展和优化。<br><strong>健壮</strong>：Polkadot 需要提供一个稳定的基础层。为了经济稳定性，需要采用分散的方法，来降低高额奖励这个攻击向量可能引发的问题。</p>
 <h2 id="4-Polkadot的参与方"><a href="#4-Polkadot的参与方" class="headerlink" title="4.Polkadot的参与方"></a>4.Polkadot的参与方</h2><p>有四个基本的角色在维持 Polkadot 网络：收集人（collator）、渔夫（fisherman）、提名人（nominator）、验证人（validator）。在 Polkadot 的一个可能实现里，最后一个角色有可能会被拆分成两个：基础验证人和可用保证人（guarantor），将会在 6.5.3 节讨论。</p>
-<p><img src="/2020/01/08/Polkadot/Polkadot" alt="Polkadot 四个角色的交互" title="Polkadot fig1.jpg"></p>
+<p><img src="/2020/01/08/Polkadot/Polkadotfig1.jpg" alt="Polkadot 四个角色的交互" title="Polkadot fig1.jpg"></p>
 <p>​                                                        图 1. Polkadot 四个角色的交互</p>
 <h3 id="4-1-验证人"><a href="#4-1-验证人" class="headerlink" title="4.1 验证人"></a>4.1 验证人</h3><p>验证人有最高权限，帮助在 Polkadot 网络里打包新区块。验证人需要抵押足够多的押金，因为我们允许其他有资金的提名人推举一个或多个可以代表他们的验证人，所以验证人一部分的押金并不是他们自己所拥有的，而是属于提名人的。</p>
 <p>一个验证人必须在高可用和高带宽的机器上运行一个中继链的客户端。每个区块上，节点都必须准备接收一个已提交的平行链上的新区块。这个过程涉及接受、验证、再发布候选区块。验证人的任命是确定性的，但实际上也很难预测。因为不能期望验证人拥有所有平行链的全同步数据，所以他们希望把这个提议平行链新区块的工作指派给第三方，也就是收集人。</p>
