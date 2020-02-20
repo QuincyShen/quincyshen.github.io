@@ -1,6 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Httpd的安装与配置之Web服务器文档类资源的解决方案</title>
+    <url>/2020/02/20/HttpServer/</url>
+    <content><![CDATA[<p>一直想搭建一个服务器，向Web一样在浏览器中显示，下载一些资源，不需要麻烦地搭建一个完整的Web程序，只是简单地访问与下载一些静态文件。Apache的httpd服务就提供了一种很好的解决方案。</p>
+<a id="more"></a>
+
+<h3 id="Httpd简介"><a href="#Httpd简介" class="headerlink" title="Httpd简介"></a>Httpd简介</h3><p>httpd是Apache超文本传输协议（HTTP）服务器的主程序，被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程的池。通常，httpd不应该被直接调用，而应该在类Unix系统中由 apachectl 调用，在Windows NT/2000/XP/2003中作为服务运行和在Windows 95/98/ME中作为控制台程序运行。</p>
+<p>下面就来动手实践，在CentOS7搭建我们自己的静态资源服务器。</p>
+<h3 id="搭建Httpd服务"><a href="#搭建Httpd服务" class="headerlink" title="搭建Httpd服务"></a>搭建Httpd服务</h3><h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>有些Linux版本的系统中已经预置了有Apache，如果没有装过Apache，就跳过准备阶段。</p>
+<ul>
+<li>检查系统中是否有httpd的服务正在进行(下图是没有的情况)：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ps -ef | grep httpd</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/02/20/HttpServer/1582203636585.png" alt="1582203636585"></p>
+<ul>
+<li>查看Linux系统服务中有没有httpd(下图是没有的情况)：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chkconfig --list</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/02/20/HttpServer/1582203855372.png" alt="1582203855372"></p>
+<ul>
+<li>如果以上操作都有的话，卸载httpd：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rpm -qa | grep httpd		&#x2F;&#x2F;查询系统中包的信息</span><br><span class="line">rpm -e 包					&#x2F;&#x2F;删除这些包</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除配置文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">find &#x2F; -name httpd.conf			&#x2F;&#x2F;找到httpd.conf配置文件</span><br><span class="line">rm &#x2F;xxx&#x2F;xxx&#x2F;httpd.conf			&#x2F;&#x2F;删除配置文件</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装Httpd"><a href="#安装Httpd" class="headerlink" title="安装Httpd"></a>安装Httpd</h4><p>采用<code>yum</code>的安装方式安装：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum list httpd			&#x2F;&#x2F;查看有误httpd的包</span><br><span class="line">yum install httpd		&#x2F;&#x2F;安装httpd</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/02/20/HttpServer/1582206252151.png" alt="1582206252151"></p>
+<h4 id="Httpd服务"><a href="#Httpd服务" class="headerlink" title="Httpd服务"></a>Httpd服务</h4><h5 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">httpd -k start</span><br></pre></td></tr></table></figure>
+
+<p>但是当第一次运行的时候可能会报错，如下所示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@localhost quincy]# httpd -k start</span><br><span class="line">AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using localhost.localdomain. Set the &#39;ServerName&#39; directive globally to suppress this message</span><br></pre></td></tr></table></figure>
+
+<p>根据错误提示，我们可以发现需要我们设置<code>ServerName</code>，打开配置文件<code>/etc/httpd/conf/httpd.conf</code>，找到ServerName，取消注释并设置：</p>
+<p><img src="/2020/02/20/HttpServer/1582206683141.png" alt="1582206683141"></p>
+<p>重新启动：</p>
+<p><img src="/2020/02/20/HttpServer/1582206781658.png" alt="1582206781658"></p>
+<p>默认将数据文件放在<code>/var/www/html</code>目录下，而网站首页的名称应该叫做<code>index.html</code>：</p>
+<p>我们进入<code>/var/www/html</code>该目录下，创建一个index.html文件。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;var&#x2F;www&#x2F;html								&#x2F;&#x2F;进入&#x2F;var&#x2F;www&#x2F;html目录</span><br><span class="line">touch index,html								&#x2F;&#x2F;创建空的index.html文件</span><br><span class="line">echo &quot;hello world&quot; &gt; &#x2F;var&#x2F;www&#x2F;html&#x2F;index.html	&#x2F;&#x2F;向文件中写入hello world</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/02/20/HttpServer/1582207264781.png" alt="1582207264781"></p>
+<p>然后从浏览器中访问该主机的地址：</p>
+<p><img src="/2020/02/20/HttpServer/1582207899030.png" alt="1582207899030"></p>
+<p><strong>注意</strong>：这里可能出现在搭建的虚拟机上可以访问，但是主机访问不了，这有可能是防火墙的原因，我们设置防火墙开放我们刚刚设置的端口。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;80&#x2F;tcp --permanent		&#x2F;&#x2F;防火墙开放80端口</span><br><span class="line">firewall-cmd --reload							&#x2F;&#x2F;重新加载防火墙</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/02/20/HttpServer/1582208130429.png" alt="1582208130429"></p>
+<p>同样的道理我们可以在该目录下防止一些文档类资源，请求就可以下载：</p>
+<p><img src="/2020/02/20/HttpServer/1582208303313.png" alt="1582208303313"></p>
+<h5 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">httpd -k stop</span><br></pre></td></tr></table></figure>
+
+<h5 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">httpd -k restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="Httpd服务配置"><a href="#Httpd服务配置" class="headerlink" title="Httpd服务配置"></a>Httpd服务配置</h3><p>配置目录及相关配置文件：</p>
+<table>
+<thead>
+<tr>
+<th align="center">配置目录</th>
+<th align="center">配置文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">服务目录</td>
+<td align="center"><code>/etc/httpd</code></td>
+</tr>
+<tr>
+<td align="center">主配置文件</td>
+<td align="center"><code>/etc/httpd/conf/httpd.conf</code></td>
+</tr>
+<tr>
+<td align="center">网站数据目录</td>
+<td align="center"><code>/var/www/html</code></td>
+</tr>
+<tr>
+<td align="center">访问日志</td>
+<td align="center"><code>/var/log/httpd/access_log</code></td>
+</tr>
+<tr>
+<td align="center">错误日志</td>
+<td align="center"><code>/var/log/httpd/error_log</code></td>
+</tr>
+<tr>
+<td align="center">站点文档目录（源码）</td>
+<td align="center"><code>/usr/local/apache/htdocs</code></td>
+</tr>
+<tr>
+<td align="center">模块文件路径</td>
+<td align="center"><code>/usr/lib64/httpd/modules/</code></td>
+</tr>
+<tr>
+<td align="center">模块配置文件</td>
+<td align="center"><code>/etc/httpd/conf.modules.d/*.conf</code></td>
+</tr>
+<tr>
+<td align="center">辅助配置文件</td>
+<td align="center"><code>/etc/httpd/conf.d/*.conf</code></td>
+</tr>
+</tbody></table>
+<p>主配置文件<code>httpd.conf</code>的常用配置参数：</p>
+<table>
+<thead>
+<tr>
+<th align="center">配置参数</th>
+<th align="center">参数含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ServerRoot</td>
+<td align="center">服务目录</td>
+</tr>
+<tr>
+<td align="center">ServerAdmin</td>
+<td align="center">管理员邮箱</td>
+</tr>
+<tr>
+<td align="center">User</td>
+<td align="center">运行服务的用户</td>
+</tr>
+<tr>
+<td align="center">Group</td>
+<td align="center">运行服务的用户组</td>
+</tr>
+<tr>
+<td align="center">ServerName</td>
+<td align="center">网站服务器的域名</td>
+</tr>
+<tr>
+<td align="center">DocumentRoot</td>
+<td align="center">网站数据目录</td>
+</tr>
+<tr>
+<td align="center">Listen</td>
+<td align="center">监听的IP地址与端口号</td>
+</tr>
+<tr>
+<td align="center">DirectoryIndex</td>
+<td align="center">默认的索引页页面</td>
+</tr>
+<tr>
+<td align="center">ErrorLog</td>
+<td align="center">错误日志文件</td>
+</tr>
+<tr>
+<td align="center">CustomLog</td>
+<td align="center">访问日志文件</td>
+</tr>
+<tr>
+<td align="center">Timeout</td>
+<td align="center">网页超时时间,默认为300秒</td>
+</tr>
+<tr>
+<td align="center">Include</td>
+<td align="center">需要加载的其他文件</td>
+</tr>
+</tbody></table>
+<p>对httpd要有更深入的了解，请进<a href="http://httpd.apache.org/docs/" target="_blank" rel="noopener">官网</a>查看。</p>
+]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>Httpd</tag>
+        <tag>服务器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux学习笔记(二)</title>
     <url>/2020/02/17/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)/</url>
     <content><![CDATA[<h3 id="Linux的实用指令"><a href="#Linux的实用指令" class="headerlink" title="Linux的实用指令"></a>Linux的实用指令</h3><h4 id="指定运行级别"><a href="#指定运行级别" class="headerlink" title="指定运行级别"></a>指定运行级别</h4><p><img src="/2020/02/17/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)/1581738004881.png" alt="1581738004881"></p>

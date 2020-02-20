@@ -46,30 +46,31 @@
   };
 </script>
 
-  <meta name="description" content="一直想搭建一个属于自己的博客网站，写一写学习计算机过程中的一些技术总结、心得想法，找到了一个这个搭建比较简单，博客界面比较友好的Hexo，再此写下搭建的流程，避免之后采坑！">
+  <meta name="description" content="一直想搭建一个服务器，向Web一样在浏览器中显示，下载一些资源，不需要麻烦地搭建一个完整的Web程序，只是简单地访问与下载一些静态文件。Apache的httpd服务就提供了一种很好的解决方案。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Next的基本安装与部署(一)">
-<meta property="og:url" content="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/index.html">
+<meta property="og:title" content="Httpd的安装与配置之Web服务器文档类资源的解决方案">
+<meta property="og:url" content="http://quincyshen.github.io/2020/02/20/HttpServer/index.html">
 <meta property="og:site_name" content="Calm down , Code on">
-<meta property="og:description" content="一直想搭建一个属于自己的博客网站，写一写学习计算机过程中的一些技术总结、心得想法，找到了一个这个搭建比较简单，博客界面比较友好的Hexo，再此写下搭建的流程，避免之后采坑！">
+<meta property="og:description" content="一直想搭建一个服务器，向Web一样在浏览器中显示，下载一些资源，不需要麻烦地搭建一个完整的Web程序，只是简单地访问与下载一些静态文件。Apache的httpd服务就提供了一种很好的解决方案。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/hexo.jpg">
-<meta property="og:image" content="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/%E9%85%8D%E7%BD%AEpath.jpg">
-<meta property="og:image" content="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/init.png">
-<meta property="og:image" content="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/mainblog.jpg">
-<meta property="og:image" content="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/clean.jpg">
-<meta property="og:image" content="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/generate.jpg">
-<meta property="og:image" content="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/server.jpg">
-<meta property="og:image" content="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/local.jpg">
-<meta property="article:published_time" content="2020-01-12T09:21:00.000Z">
-<meta property="article:modified_time" content="2020-02-17T07:18:56.252Z">
+<meta property="og:image" content="http://quincyshen.github.io/2020/02/20/HttpServer/1582203636585.png">
+<meta property="og:image" content="http://quincyshen.github.io/2020/02/20/HttpServer/1582203855372.png">
+<meta property="og:image" content="http://quincyshen.github.io/2020/02/20/HttpServer/1582206252151.png">
+<meta property="og:image" content="http://quincyshen.github.io/2020/02/20/HttpServer/1582206683141.png">
+<meta property="og:image" content="http://quincyshen.github.io/2020/02/20/HttpServer/1582206781658.png">
+<meta property="og:image" content="http://quincyshen.github.io/2020/02/20/HttpServer/1582207264781.png">
+<meta property="og:image" content="http://quincyshen.github.io/2020/02/20/HttpServer/1582207899030.png">
+<meta property="og:image" content="http://quincyshen.github.io/2020/02/20/HttpServer/1582208130429.png">
+<meta property="og:image" content="http://quincyshen.github.io/2020/02/20/HttpServer/1582208303313.png">
+<meta property="article:published_time" content="2020-02-20T14:42:00.000Z">
+<meta property="article:modified_time" content="2020-02-20T14:52:52.695Z">
 <meta property="article:author" content="Quincy">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="Next">
+<meta property="article:tag" content="Httpd">
+<meta property="article:tag" content="服务器">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/hexo.jpg">
+<meta name="twitter:image" content="http://quincyshen.github.io/2020/02/20/HttpServer/1582203636585.png">
 
-<link rel="canonical" href="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/">
+<link rel="canonical" href="http://quincyshen.github.io/2020/02/20/HttpServer/">
 
 
 <script id="page-configurations">
@@ -81,7 +82,7 @@
   };
 </script>
 
-  <title>Next的基本安装与部署(一) | Calm down , Code on</title>
+  <title>Httpd的安装与配置之Web服务器文档类资源的解决方案 | Calm down , Code on</title>
   
 
 
@@ -220,7 +221,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/">
+    <link itemprop="mainEntityOfPage" href="http://quincyshen.github.io/2020/02/20/HttpServer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -233,7 +234,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Next的基本安装与部署(一)
+          Httpd的安装与配置之Web服务器文档类资源的解决方案
         </h1>
 
         <div class="post-meta">
@@ -242,30 +243,18 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-01-12 17:21:00" itemprop="dateCreated datePublished" datetime="2020-01-12T17:21:00+08:00">2020-01-12</time>
+              <time title="创建时间：2020-02-20 22:42:00 / 修改时间：22:52:52" itemprop="dateCreated datePublished" datetime="2020-02-20T22:42:00+08:00">2020-02-20</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-17 15:18:56" itemprop="dateModified" datetime="2020-02-17T15:18:56+08:00">2020-02-17</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/Next/" itemprop="url" rel="index">
-                    <span itemprop="name">Next</span>
+                  <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
                   </a>
                 </span>
             </span>
@@ -287,8 +276,8 @@
       <span class="post-meta-item-text">Changyan：</span>
     
     
-      <a title="changyan" href="/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/#SOHUCS" itemprop="discussionUrl">
-        <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2020/01/12/Next的基本安装与部署(一)/" itemprop="commentCount"></span>
+      <a title="changyan" href="/2020/02/20/HttpServer/#SOHUCS" itemprop="discussionUrl">
+        <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2020/02/20/HttpServer/" itemprop="commentCount"></span>
       </a>
     
   </span>
@@ -299,14 +288,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>547</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -318,40 +307,167 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>一直想搭建一个属于自己的博客网站，写一写学习计算机过程中的一些技术总结、心得想法，找到了一个这个搭建比较简单，博客界面比较友好的Hexo，再此写下搭建的流程，避免之后采坑！</p>
+        <p>一直想搭建一个服务器，向Web一样在浏览器中显示，下载一些资源，不需要麻烦地搭建一个完整的Web程序，只是简单地访问与下载一些静态文件。Apache的httpd服务就提供了一种很好的解决方案。</p>
 <a id="more"></a>
 
-<p>这里不在赘述如何进行Node和Git的配置安装，各种教程很多，我们直接进行Hexo的基本安装与部署。</p>
-<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><h3 id="安装hexo-cli"><a href="#安装hexo-cli" class="headerlink" title="安装hexo-cli"></a>安装hexo-cli</h3><p>新建一个文件夹blog，安装<code>hexo-cli</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<h3 id="Httpd简介"><a href="#Httpd简介" class="headerlink" title="Httpd简介"></a>Httpd简介</h3><p>httpd是Apache超文本传输协议（HTTP）服务器的主程序，被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程的池。通常，httpd不应该被直接调用，而应该在类Unix系统中由 apachectl 调用，在Windows NT/2000/XP/2003中作为服务运行和在Windows 95/98/ME中作为控制台程序运行。</p>
+<p>下面就来动手实践，在CentOS7搭建我们自己的静态资源服务器。</p>
+<h3 id="搭建Httpd服务"><a href="#搭建Httpd服务" class="headerlink" title="搭建Httpd服务"></a>搭建Httpd服务</h3><h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>有些Linux版本的系统中已经预置了有Apache，如果没有装过Apache，就跳过准备阶段。</p>
+<ul>
+<li>检查系统中是否有httpd的服务正在进行(下图是没有的情况)：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep httpd</span><br></pre></td></tr></table></figure>
 
-<h3 id="安装hexo环境"><a href="#安装hexo环境" class="headerlink" title="安装hexo环境"></a>安装hexo环境</h3><p>安装<code>hexo</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/02/20/HttpServer/1582203636585.png" alt="1582203636585"></p>
+<ul>
+<li>查看Linux系统服务中有没有httpd(下图是没有的情况)：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --list</span><br></pre></td></tr></table></figure>
 
-<p>运行后在当前文件下会生成如图：</p>
-<p><img src="/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/hexo.jpg" alt="hexo npm" title="hexo安装"></p>
-<p>在本机环境变量中配置hexo的<code>path</code>：</p>
-<p><img src="/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/%E9%85%8D%E7%BD%AEpath.jpg" alt="path配置" title="path配置"></p>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>初始化Hexo博客：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/02/20/HttpServer/1582203855372.png" alt="1582203855372"></p>
+<ul>
+<li>如果以上操作都有的话，卸载httpd：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep httpd		&#x2F;&#x2F;查询系统中包的信息</span><br><span class="line">rpm -e 包					&#x2F;&#x2F;删除这些包</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/init.png" alt="初始化博客" title="init blog"></p>
-<p>里面内容为：</p>
-<p><img src="/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/mainblog.jpg" alt="主博客" title="main blog"></p>
-<p><strong>至此，用Hexo搭建个人博客就完成了环境安装。我们试着运行一下</strong></p>
-<h2 id="运行Hexo"><a href="#运行Hexo" class="headerlink" title="运行Hexo"></a>运行Hexo</h2><p>进入初始化完成的blog文件夹，我们称之为站点文件，然后运行git bash，然后开始部署：</p>
-<h3 id="清理文件"><a href="#清理文件" class="headerlink" title="清理文件"></a>清理文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl   &#x2F;&#x2F;clean的缩写</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除配置文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find &#x2F; -name httpd.conf			&#x2F;&#x2F;找到httpd.conf配置文件</span><br><span class="line">rm &#x2F;xxx&#x2F;xxx&#x2F;httpd.conf			&#x2F;&#x2F;删除配置文件</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/clean.jpg" alt="清理" title="clean blog"></p>
-<h3 id="生成文件"><a href="#生成文件" class="headerlink" title="生成文件"></a>生成文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g   &#x2F;&#x2F;generate的缩写</span><br></pre></td></tr></table></figure>
+<h4 id="安装Httpd"><a href="#安装Httpd" class="headerlink" title="安装Httpd"></a>安装Httpd</h4><p>采用<code>yum</code>的安装方式安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum list httpd			&#x2F;&#x2F;查看有误httpd的包</span><br><span class="line">yum install httpd		&#x2F;&#x2F;安装httpd</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/generate.jpg" alt="生成" title="generate blog"></p>
-<h3 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s   &#x2F;&#x2F;server的缩写</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/02/20/HttpServer/1582206252151.png" alt="1582206252151"></p>
+<h4 id="Httpd服务"><a href="#Httpd服务" class="headerlink" title="Httpd服务"></a>Httpd服务</h4><h5 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd -k start</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/server.jpg" alt="运行" title="server blog"></p>
-<p>在浏览器中输入<code>localhost:4000</code>即可看到运行起来的博客。</p>
-<p><img src="/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/local.jpg" alt="运行" title="local blog"></p>
-<p><strong>好了，初始的Hexo安装完成了，接下来我们就可以选择自己喜欢的theme进行博客美化了！</strong></p>
+<p>但是当第一次运行的时候可能会报错，如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost quincy]# httpd -k start</span><br><span class="line">AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using localhost.localdomain. Set the &#39;ServerName&#39; directive globally to suppress this message</span><br></pre></td></tr></table></figure>
+
+<p>根据错误提示，我们可以发现需要我们设置<code>ServerName</code>，打开配置文件<code>/etc/httpd/conf/httpd.conf</code>，找到ServerName，取消注释并设置：</p>
+<p><img src="/2020/02/20/HttpServer/1582206683141.png" alt="1582206683141"></p>
+<p>重新启动：</p>
+<p><img src="/2020/02/20/HttpServer/1582206781658.png" alt="1582206781658"></p>
+<p>默认将数据文件放在<code>/var/www/html</code>目录下，而网站首页的名称应该叫做<code>index.html</code>：</p>
+<p>我们进入<code>/var/www/html</code>该目录下，创建一个index.html文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;var&#x2F;www&#x2F;html								&#x2F;&#x2F;进入&#x2F;var&#x2F;www&#x2F;html目录</span><br><span class="line">touch index,html								&#x2F;&#x2F;创建空的index.html文件</span><br><span class="line">echo &quot;hello world&quot; &gt; &#x2F;var&#x2F;www&#x2F;html&#x2F;index.html	&#x2F;&#x2F;向文件中写入hello world</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/02/20/HttpServer/1582207264781.png" alt="1582207264781"></p>
+<p>然后从浏览器中访问该主机的地址：</p>
+<p><img src="/2020/02/20/HttpServer/1582207899030.png" alt="1582207899030"></p>
+<p><strong>注意</strong>：这里可能出现在搭建的虚拟机上可以访问，但是主机访问不了，这有可能是防火墙的原因，我们设置防火墙开放我们刚刚设置的端口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;80&#x2F;tcp --permanent		&#x2F;&#x2F;防火墙开放80端口</span><br><span class="line">firewall-cmd --reload							&#x2F;&#x2F;重新加载防火墙</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/02/20/HttpServer/1582208130429.png" alt="1582208130429"></p>
+<p>同样的道理我们可以在该目录下防止一些文档类资源，请求就可以下载：</p>
+<p><img src="/2020/02/20/HttpServer/1582208303313.png" alt="1582208303313"></p>
+<h5 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd -k stop</span><br></pre></td></tr></table></figure>
+
+<h5 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd -k restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="Httpd服务配置"><a href="#Httpd服务配置" class="headerlink" title="Httpd服务配置"></a>Httpd服务配置</h3><p>配置目录及相关配置文件：</p>
+<table>
+<thead>
+<tr>
+<th align="center">配置目录</th>
+<th align="center">配置文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">服务目录</td>
+<td align="center"><code>/etc/httpd</code></td>
+</tr>
+<tr>
+<td align="center">主配置文件</td>
+<td align="center"><code>/etc/httpd/conf/httpd.conf</code></td>
+</tr>
+<tr>
+<td align="center">网站数据目录</td>
+<td align="center"><code>/var/www/html</code></td>
+</tr>
+<tr>
+<td align="center">访问日志</td>
+<td align="center"><code>/var/log/httpd/access_log</code></td>
+</tr>
+<tr>
+<td align="center">错误日志</td>
+<td align="center"><code>/var/log/httpd/error_log</code></td>
+</tr>
+<tr>
+<td align="center">站点文档目录（源码）</td>
+<td align="center"><code>/usr/local/apache/htdocs</code></td>
+</tr>
+<tr>
+<td align="center">模块文件路径</td>
+<td align="center"><code>/usr/lib64/httpd/modules/</code></td>
+</tr>
+<tr>
+<td align="center">模块配置文件</td>
+<td align="center"><code>/etc/httpd/conf.modules.d/*.conf</code></td>
+</tr>
+<tr>
+<td align="center">辅助配置文件</td>
+<td align="center"><code>/etc/httpd/conf.d/*.conf</code></td>
+</tr>
+</tbody></table>
+<p>主配置文件<code>httpd.conf</code>的常用配置参数：</p>
+<table>
+<thead>
+<tr>
+<th align="center">配置参数</th>
+<th align="center">参数含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ServerRoot</td>
+<td align="center">服务目录</td>
+</tr>
+<tr>
+<td align="center">ServerAdmin</td>
+<td align="center">管理员邮箱</td>
+</tr>
+<tr>
+<td align="center">User</td>
+<td align="center">运行服务的用户</td>
+</tr>
+<tr>
+<td align="center">Group</td>
+<td align="center">运行服务的用户组</td>
+</tr>
+<tr>
+<td align="center">ServerName</td>
+<td align="center">网站服务器的域名</td>
+</tr>
+<tr>
+<td align="center">DocumentRoot</td>
+<td align="center">网站数据目录</td>
+</tr>
+<tr>
+<td align="center">Listen</td>
+<td align="center">监听的IP地址与端口号</td>
+</tr>
+<tr>
+<td align="center">DirectoryIndex</td>
+<td align="center">默认的索引页页面</td>
+</tr>
+<tr>
+<td align="center">ErrorLog</td>
+<td align="center">错误日志文件</td>
+</tr>
+<tr>
+<td align="center">CustomLog</td>
+<td align="center">访问日志文件</td>
+</tr>
+<tr>
+<td align="center">Timeout</td>
+<td align="center">网页超时时间,默认为300秒</td>
+</tr>
+<tr>
+<td align="center">Include</td>
+<td align="center">需要加载的其他文件</td>
+</tr>
+</tbody></table>
+<p>对httpd要有更深入的了解，请进<a href="http://httpd.apache.org/docs/" target="_blank" rel="noopener">官网</a>查看。</p>
 
     </div>
     
@@ -398,7 +514,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://quincyshen.github.io/2020/01/12/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%B8%80)/" title="Next的基本安装与部署(一)">http://quincyshen.github.io/2020/01/12/Next的基本安装与部署(一)/</a>
+    <a href="http://quincyshen.github.io/2020/02/20/HttpServer/" title="Httpd的安装与配置之Web服务器文档类资源的解决方案">http://quincyshen.github.io/2020/02/20/HttpServer/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -412,8 +528,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
-              <a href="/tags/Next/" rel="tag"><i class="fa fa-tag"></i> Next</a>
+              <a href="/tags/Httpd/" rel="tag"><i class="fa fa-tag"></i> Httpd</a>
+              <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> 服务器</a>
           </div>
 
         
@@ -422,13 +538,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/01/08/Polkadot/" rel="prev" title="波卡白皮书Polkadot：畅想一种异构的多链架构">
-      <i class="fa fa-chevron-left"></i> 波卡白皮书Polkadot：畅想一种异构的多链架构
+    <a href="/2020/02/17/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)/" rel="prev" title="Linux学习笔记(二)">
+      <i class="fa fa-chevron-left"></i> Linux学习笔记(二)
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/01/13/Next%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2(%E4%BA%8C)/" rel="next" title="Next的基本安装与部署(二)">
-      Next的基本安装与部署(二) <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -493,7 +606,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Hexo"><span class="nav-number">1.</span> <span class="nav-text">安装Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hexo-cli"><span class="nav-number">1.1.</span> <span class="nav-text">安装hexo-cli</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hexo环境"><span class="nav-number">1.2.</span> <span class="nav-text">安装hexo环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">1.3.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行Hexo"><span class="nav-number">2.</span> <span class="nav-text">运行Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#清理文件"><span class="nav-number">2.1.</span> <span class="nav-text">清理文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成文件"><span class="nav-number">2.2.</span> <span class="nav-text">生成文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行服务"><span class="nav-number">2.3.</span> <span class="nav-text">运行服务</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Httpd简介"><span class="nav-number">1.</span> <span class="nav-text">Httpd简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建Httpd服务"><span class="nav-number">2.</span> <span class="nav-text">搭建Httpd服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备"><span class="nav-number">2.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Httpd"><span class="nav-number">2.2.</span> <span class="nav-text">安装Httpd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Httpd服务"><span class="nav-number">2.3.</span> <span class="nav-text">Httpd服务</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#启动"><span class="nav-number">2.3.1.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关闭"><span class="nav-number">2.3.2.</span> <span class="nav-text">关闭</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重启"><span class="nav-number">2.3.3.</span> <span class="nav-text">重启</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Httpd服务配置"><span class="nav-number">3.</span> <span class="nav-text">Httpd服务配置</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
